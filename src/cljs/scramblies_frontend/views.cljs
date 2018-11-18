@@ -7,8 +7,9 @@
 (defn scramble-error []
   (let [error (re-frame/subscribe [:scramblies/error])]
     (when @error
-      [:div
-       [:h4 "Error contacting the server: " (:status-text @error)]])))
+      [:p
+       [:strong "Error contacting the server: "]
+       [:span {:style {:color "red"}} (:status-text @error)]])))
 
 (defn scramble-result []
   (let [result (re-frame/subscribe [:scramblies/result])]
@@ -24,14 +25,16 @@
      [:h1 "Insert two strings below"]
      [:form
       [:label "String to scramble:"]
-      [:input {:type "text", :name "str1", :value @str1
-               :on-change #(re-frame/dispatch
-                            [:scramblies/input-change :scramblies/str1 (.. % -target -value)])}]
+      [:textarea {:name "str1", :cols 50, :rows 5
+                  :value @str1
+                  :on-change #(re-frame/dispatch
+                               [:scramblies/input-change :scramblies/str1 (.. % -target -value)])}]
       [:br]
       [:label "String to match:"]
-      [:input {:type "text", :name "str2", :value @str2
-               :on-change #(re-frame/dispatch
-                            [:scramblies/input-change :scramblies/str2 (.. % -target -value)])}]
+      [:textarea {:name "str2", :cols 50, :rows 5
+                  :value @str2
+                  :on-change #(re-frame/dispatch
+                               [:scramblies/input-change :scramblies/str2 (.. % -target -value)])}]
       [:br]
       [:input {:type "button"
                :value "Scramble"

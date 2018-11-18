@@ -1,0 +1,15 @@
+label, textarea {
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 20px;
+}
+
+label {
+    text-align: right;
+    min-width: 120px;
+    padding-right: 10px;
+}
+
+input[type=button] {
+    font-size: x-large;
+}
